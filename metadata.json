@@ -1,0 +1,21 @@
+{
+    "KPackageStructure": "Plasma/Wallpaper",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "arcanorca@users.noreply.github.com",
+                "Name": "arcanorca"
+            }
+        ],
+        "Category": "Wallpaper",
+        "Description": "Boingwave RHI-accelerated live wallpaper for KDE Plasma 6",
+        "EnabledByDefault": true,
+        "Icon": "preferences-desktop-wallpaper",
+        "Id": "com.custom.boingwave",
+        "License": "GPL-3.0-or-later",
+        "Name": "Boingwave",
+        "Version": "0.1.0",
+        "Website": "https://github.com/arcanorca/Boingwave"
+    },
+    "X-Plasma-MainScript": "ui/main.qml"
+}

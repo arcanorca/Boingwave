@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+
+  <group name="General">
+    <entry name="Theme" type="String">
+      <label>Color theme preset</label>
+      <default>Amiga Original</default>
+    </entry>
+
+    <entry name="BackgroundColor" type="Color">
+      <label>Background color</label>
+      <default>#aaaaaa</default>
+    </entry>
+
+    <entry name="GridColor" type="Color">
+      <label>Grid color</label>
+      <default>#aa00aa</default>
+    </entry>
+
+    <entry name="BallPrimaryColor" type="Color">
+      <label>Primary ball color</label>
+      <default>#ff0000</default>
+    </entry>
+
+    <entry name="BallSecondaryColor" type="Color">
+      <label>Secondary ball color</label>
+      <default>#ffffff</default>
+    </entry>
+
+    <entry name="BallHighlightColor" type="Color">
+      <label>Ball highlight color</label>
+      <default>#ffdddd</default>
+    </entry>
+
+    <entry name="ShadowColor" type="Color">
+      <label>Shadow color</label>
+      <default>#1a1a1a</default>
+    </entry>
+
+    <entry name="ShadowOpacity" type="Double">
+      <label>Shadow opacity multiplier</label>
+      <default>0.5</default>
+    </entry>
+
+    <entry name="ShowGrid" type="Bool">
+      <label>Show grid overlay</label>
+      <default>true</default>
+    </entry>
+
+    <entry name="BrightnessBoost" type="Double">
+      <label>Global brightness boost</label>
+      <default>1.0</default>
+    </entry>
+
+    <entry name="CrtPreset" type="Int">
+      <label>CRT shader preset (0=Off, 1=ZFast, 2=Easymode, 3=Geom, 4=Royale-Lite)</label>
+      <default>0</default>
+    </entry>
+
+    <entry name="CrtWarp" type="Bool">
+      <label>Enable CRT screen curvature warp</label>
+      <default>false</default>
+    </entry>
+
+    <entry name="CrtBloom" type="Double">
+      <label>CRT bloom/halation intensity</label>
+      <default>0.0</default>
+    </entry>
+
+    <entry name="CrtRgbShift" type="Double">
+      <label>CRT chromatic aberration intensity</label>
+      <default>0.0</default>
+    </entry>
+
+    <entry name="CrtNoise" type="Double">
+      <label>CRT analog signal noise</label>
+      <default>0.0</default>
+    </entry>
+
+    <entry name="CrtJitter" type="Double">
+      <label>CRT scanline jitter intensity</label>
+      <default>0.0</default>
+    </entry>
+
+    <entry name="CrtMaskStrength" type="Double">
+      <label>CRT phosphor mask intensity</label>
+      <default>0.0</default>
+    </entry>
+
+    <entry name="ClockEnabled" type="Bool">
+      <label>Enable the digital pixel clock</label>
+      <default>false</default>
+    </entry>
+
+    <entry name="ClockMode" type="Int">
+      <label>Pixel clock size (0=Wristwatch, 1=Desk, 2=Wall, 3=Jumbotron)</label>
+      <default>1</default>
+    </entry>
+
+    <entry name="ClockLayer" type="Int">
+      <label>Clock layer (0=Behind ball, 1=In front of ball)</label>
+      <default>1</default>
+    </entry>
+
+    <entry name="ClockOpacity" type="Double">
+      <label>Clock opacity</label>
+      <default>0.85</default>
+    </entry>
+
+    <entry name="ClockPanelColor" type="Color">
+      <label>Clock panel color</label>
+      <default>#4b3c5a</default>
+    </entry>
+
+    <entry name="ClockBorderColor" type="Color">
+      <label>Clock border color</label>
+      <default>#aa00aa</default>
+    </entry>
+
+    <entry name="ClockDigitColor" type="Color">
+      <label>Clock digit color</label>
+      <default>#ffd8a0</default>
+    </entry>
+
+    <entry name="ClockOutlineColor" type="Color">
+      <label>Clock outline color</label>
+      <default>#24172f</default>
+    </entry>
+
+    <entry name="ClockBarColor" type="Color">
+      <label>Clock progress bar color</label>
+      <default>#ff355e</default>
+    </entry>
+
+    <entry name="RenderOnlyOnFocus" type="Bool">
+      <label>Only render animation when desktop is focused</label>
+      <default>false</default>
+    </entry>
+
+    <entry name="RenderClockWhenPaused" type="Bool">
+      <label>Keep the clock updating when rendering is paused</label>
+      <default>true</default>
+    </entry>
+
+    <entry name="AnimationSpeed" type="Double">
+      <label>Animation speed multiplier</label>
+      <default>0.6</default>
+    </entry>
+
+    <entry name="PhysicsPreset" type="Int">
+      <label>Boing Ball Physics Model (0=Jupiter Gravity, 1=Classic Demo 1984, 2=Moon Float)</label>
+      <default>1</default>
+    </entry>
+
+    <entry name="RotationSpeed" type="Double">
+      <label>Ball rotation speed multiplier</label>
+      <default>1.0</default>
+    </entry>
+
+    <entry name="GravityModifier" type="Double">
+      <label>Physics gravity and bounce modifier</label>
+      <default>1.0</default>
+    </entry>
+
+    <entry name="RenderFps" type="Int">
+      <label>Render update FPS cap</label>
+      <default>30</default>
+    </entry>
+  </group>
+</kcfg>
