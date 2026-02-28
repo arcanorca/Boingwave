@@ -56,29 +56,43 @@ Rendering is separated into four distinct fragment shaders executed directly on 
 
 `Desktop and Wallpaper` -> `Get New Plugins...` -> search `Boingwave`
 
-### Git (Local Deploy)
+### Terminal (.kpackage install)
+
+If you have downloaded the `.kpackage` release, you can install or upgrade it directly:
 
 ```bash
-# 1. Clone the repo
+# To install:
+kpackagetool6 -t Plasma/Wallpaper -i arcanorca.boingwave.kpackage
+
+# To upgrade an existing installation:
+kpackagetool6 -t Plasma/Wallpaper -u arcanorca.boingwave.kpackage
+```
+
+### Git (Local Deploy)
+
+1. Clone the repo and enter the directory:
+```bash
 git clone https://github.com/arcanorca/boingwave.git
 cd boingwave
-
-# 2. Build shaders and deploy
-./build_and_deploy.sh
-
-# If Plasma still shows stale QML/settings, restart the shell:
-# plasmashell --replace & disown
 ```
-// BUILDING SHADERS (.qsb)
+2. Build shaders and deploy:
+```bash
+./build_and_deploy.sh
+```
+*If Plasma still shows stale QML/settings, restart the shell using `plasmashell --replace & disown`.*
+
+## // BUILDING SHADERS (.qsb)
 
 If you modify the .frag files, you must recompile them using Qt Shader Baker:
 
+```bash
 qsb --glsl "150,120" --spirv -o contents/shaders/bg.qsb contents/shaders/bg.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/ball.qsb contents/shaders/ball.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/crt.qsb contents/shaders/crt.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/clock.qsb contents/shaders/clock.frag
+```
 
-// CREDITS
+## // CREDITS
 
 * **Developer:** arcanorca
 * **License:** GPL-3.0-or-later

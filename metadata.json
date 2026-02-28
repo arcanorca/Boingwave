@@ -11,7 +11,7 @@
         "Description": "Boingwave RHI-accelerated live wallpaper for KDE Plasma 6",
         "EnabledByDefault": true,
         "Icon": "preferences-desktop-wallpaper",
-        "Id": "com.custom.boingwave",
+        "Id": "arcanorca.boingwave",
         "License": "GPL-3.0-or-later",
         "Name": "Boingwave",
         "Version": "0.1.0",
