@@ -5,7 +5,7 @@
   <br/> <br/> 
 </div>
 
-A recreation of the 1984 Amiga Boing Ball tech demo as a KDE Plasma 6 live wallpaper. Implemented using Qt/QML and Qt RHI shaders for hardware-accelerated rendering and consistent performance.
+A visual recreation of the 1984 Amiga Boing Ball tech demo as a KDE Plasma 6 live wallpaper. Implemented using Qt/QML and Qt RHI shaders for hardware-accelerated rendering and consistent performance.
 
 ## // DEMO
 
