@@ -25,7 +25,7 @@ https://github.com/user-attachments/assets/b895d35c-c34f-4201-8ab4-19307b759437
 ## // CONTROLS & CONFIG
 
 **Settings Menu:**
-* **Theme Presets:** Select from 13 different aesthetic palettes: Amiga Original, Amber, Catppuccin, Dracula, Emerald, Everforest, Gruvbox, Kii (Wii-inspired UI), Monochrome, Nord, Paper Light, Rose Pine, and Tokyo Night.
+* **Customizable Themes:** Select from built-in palettes: Amiga Original, Amber, Catppuccin, Dracula, Emerald, Everforest, Gruvbox, Kii (Wii-inspired UI), Monochrome, Nord, Paper Light, Rose Pine, and Tokyo Night.
 * **Physics Modifiers:** Presets for bounce behavior ("Jupiter", "Classic 1984", and "Moon Float"), alongside manual animation speed multipliers.
 * **CRT & Analog Effects:** Configurable parameters for Bloom, Noise, Jitter, RGB Shifting, Scanline intensity, and Screen Warp (Curvature).
 * **Digital Clock:** Optional time overlay integrated into the shader background layer.
@@ -33,7 +33,7 @@ https://github.com/user-attachments/assets/b895d35c-c34f-4201-8ab4-19307b759437
 
 ## // HOW IT WORKS
 
-Boingwave utilizes Qt/QML and Qt RHI (OpenGL/Vulkan/Wayland) for rendering. It relies on a zero-allocation physics loop and layered fragment shaders to reduce CPU overhead and maintain stable framerates.
+Boingwave utilizes Qt/QML and Qt RHI for rendering. It relies on a zero-allocation physics loop and layered fragment shaders to reduce CPU overhead.
 
 ### 1. Layered Drawing (The Shader Pipeline)
 
@@ -43,16 +43,10 @@ Rendering is separated into four distinct fragment shaders executed directly on 
 * **Retro Effects (`crt.frag`):** Applies post-processing filters, including bloom, screen curvature distortion, and analog noise simulation.
 * **Digital Clock (`clock.frag`):** An overlay rendering the system time natively within the shader pipeline.
 
-### 2. Zero-Lag Physics
+### 2. Power Savings
 
-Standard JavaScript-based animations often instantiate objects that trigger Garbage Collection, leading to micro-stutters.
-* **Math, Not Objects:** The QML physics loop restricts calculations to primitive numeric types. This zero-allocation approach prevents memory fragmentation and Garbage Collection overhead.
-* **Instant Calculations:** Parameters like gravity and bounce factors are pre-calculated upon configuration changes. The runtime loop strictly evaluates the resulting variables without reallocation.
-
-### 3. Power Savings
-
-* **FPS Limit:** Rendering can be capped at specific intervals (15, 25, 30, 45, or 60 FPS) to minimize CPU wake-ups and reduce the render loop frequency of the Plasma shell.
-* **Smart Pause:** An optional toggle that completely pauses the wallpaper when the desktop is covered by other windows, saving system resources.
+* **FPS Limit:** Rendering can be capped at specific intervals (15, 25, 30, 45, or 60 FPS) to minimize CPU wake-ups (cost of waking up the KDE Plasma)
+* **Smart Pause:** An optional toggle that pauses the wallpaper when the desktop is covered by other windows, saving system resources, optionally it can still render the clock.
 
 ## // INSTALLATION
 
@@ -83,8 +77,6 @@ qsb --glsl "150,120" --spirv -o contents/shaders/bg.qsb contents/shaders/bg.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/ball.qsb contents/shaders/ball.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/crt.qsb contents/shaders/crt.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/clock.qsb contents/shaders/clock.frag
-
-(A helper script build_shaders.sh is included in the project root).
 
 // CREDITS
 
