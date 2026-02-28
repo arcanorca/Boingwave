@@ -1,55 +1,58 @@
 # Boingwave (KDE Plasma 6 Live Wallpaper)
 
 <div align="center">
-  <br/> <img src="https://raw.githubusercontent.com/arcanorca/boingwave/main/logo.svg" width="200" />
+  <br/> <img src="https://github.com/arcanorca/Boingwave/blob/main/boingwave_animated.svg" width="200" />
   <br/> <br/> 
 </div>
 
-A lightweight, mathematically rigorous recreation of the historic 1984 Amiga Boing Ball tech demo. Optimized for modern hardware, interactive, and performance-friendly.
+A recreation of the 1984 Amiga Boing Ball tech demo as a KDE Plasma 6 live wallpaper. Implemented using Qt/QML and Qt RHI shaders for hardware-accelerated rendering and consistent performance.
 
 ## // DEMO
 
-https://github.com/user-attachments/assets/your-demo-video-link.webm
+https://github.com/user-attachments/assets/b895d35c-c34f-4201-8ab4-19307b759437
+
+<br/>
 
 <div align="center">
-  <h3>[Screenshots]</h3>
-  
-  <img src="https://github.com/user-attachments/assets/screenshot-1-link" width="45%" style="margin:5px;" />
-  <img src="https://github.com/user-attachments/assets/screenshot-2-link" width="45%" style="margin:5px;" />
-  
-  <br/>
-
-  <img src="https://github.com/user-attachments/assets/screenshot-3-link" width="45%" style="margin:5px;" />
-  <img src="https://github.com/user-attachments/assets/screenshot-4-link" width="45%" style="margin:5px;" />
-
-  <br/><br/>
-
   <h3>[Settings GUI]</h3>
-  <img src="https://github.com/user-attachments/assets/settings-gui-link" width="30%" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); border-radius: 10px;" />
+  <img src="https://github.com/user-attachments/assets/fc50d9b9-923a-414d-b2ba-6f931dde2ca1" alt="Appearence" width="32%" style="margin: 0.5%;" />
+  <img src="https://github.com/user-attachments/assets/d5dadffe-e896-40b6-80cb-d444f6c6c4af" alt="Clock" width="32%" style="margin: 0.5%;" />
+  <img src="https://github.com/user-attachments/assets/287face2-5a16-4fe8-8787-3e9d3221138e" alt="Performance" width="32%" style="margin: 0.5%;" />
 </div>
+
+<br/>
+
+## // CONTROLS & CONFIG
+
+**Settings Menu:**
+* **Theme Presets:** Select from 13 different aesthetic palettes: Amiga Original, Amber, Catppuccin, Dracula, Emerald, Everforest, Gruvbox, Kii (Wii-inspired UI), Monochrome, Nord, Paper Light, Rose Pine, and Tokyo Night.
+* **Physics Modifiers:** Presets for bounce behavior ("Jupiter", "Classic 1984", and "Moon Float"), alongside manual animation speed multipliers.
+* **CRT & Analog Effects:** Configurable parameters for Bloom, Noise, Jitter, RGB Shifting, Scanline intensity, and Screen Warp (Curvature).
+* **Digital Clock:** Optional time overlay integrated into the shader background layer.
+
 
 ## // HOW IT WORKS
 
-Boingwave is not just a visual homage; it is an exercise in Qt/QML and OpenGL/Vulkan performance optimization. It runs a true 0-allocation physics simulation and uses layered GPU shader processing to minimize resource usage while delivering a smooth, retro aesthetic.
+Boingwave utilizes Qt/QML and Qt RHI (OpenGL/Vulkan/Wayland) for rendering. It relies on a zero-allocation physics loop and layered fragment shaders to reduce CPU overhead and maintain stable framerates.
 
 ### 1. Layered Drawing (The Shader Pipeline)
 
-Instead of using standard, heavy desktop drawing methods, Boingwave splits the visual work into four independent, highly optimized "layers" that run directly on your Graphics Card (GPU):
-* **Background (`bg.frag`):** Draws the endless 3D grid using pure mathematics without bothering your computer's main processor (CPU).
-* **The Ball (`ball.frag`):** Renders the perfect 3D sphere, lighting, and shadow. It recreates the classic 1984 color-spinning illusion just by tracking where the ball is on the screen.
-* **Retro Effects (`crt.frag`):** Adds the vintage television look, including glowing colors (bloom), curved edges, and analog static noise.
-* **Digital Clock (`clock.frag`):** A lightweight overlay that displays the time without slowing down the physics.
+Rendering is separated into four distinct fragment shaders executed directly on the GPU, avoiding CPU-based rendering pipelines:
+* **Background (`bg.frag`):** Renders the 3D perspective grid mathematically, offloading spatial calculations from the CPU.
+* **The Ball (`ball.frag`):** Computes sphere geometry, lighting, and shadows. The color-cycling animation is mapped directly to the sphere's screen-space coordinates.
+* **Retro Effects (`crt.frag`):** Applies post-processing filters, including bloom, screen curvature distortion, and analog noise simulation.
+* **Digital Clock (`clock.frag`):** An overlay rendering the system time natively within the shader pipeline.
 
 ### 2. Zero-Lag Physics
 
-Most animated wallpapers use standard JavaScript to calculate where things should bounce. This creates temporary memory junk, forcing your computer to pause and "clean up the trash" (Garbage Collection), which causes micro-stutters.
-* **Math, Not Objects:** Boingwave's physics engine completely bypasses this issue. It uses raw numbers instead of complex code objects, meaning it generates **zero memory trash**.
-* **Instant Calculations:** When you change settings like Gravity, the engine pre-calculates the formulas instantly. The actual bouncing loop is a pure, frictionless math equation.
+Standard JavaScript-based animations often instantiate objects that trigger Garbage Collection, leading to micro-stutters.
+* **Math, Not Objects:** The QML physics loop restricts calculations to primitive numeric types. This zero-allocation approach prevents memory fragmentation and Garbage Collection overhead.
+* **Instant Calculations:** Parameters like gravity and bounce factors are pre-calculated upon configuration changes. The runtime loop strictly evaluates the resulting variables without reallocation.
 
-### 3. Smart Power Savings
+### 3. Power Savings
 
-* **Strict FPS Limit:** Modern monitors often run at 144Hz or 240Hz. A bouncing ball doesn't need to be drawn 240 times a second. Boingwave lets you put a hard cap on the framerate (e.g., 60 FPS), which dramatically reduces power consumption and heat.
-* **Smart Pause:** An optional feature allows the wallpaper to completely turn itself off when you maximize a window over it. If you can't see the desktop, it uses exactly 0% of your CPU and GPU.
+* **FPS Limit:** Rendering can be capped at specific intervals (15, 25, 30, 45, or 60 FPS) to minimize CPU wake-ups and reduce the render loop frequency of the Plasma shell.
+* **Smart Pause:** An optional toggle that completely pauses the wallpaper when the desktop is covered by other windows, saving system resources.
 
 ## // INSTALLATION
 
@@ -72,29 +75,19 @@ cd boingwave
 # If Plasma still shows stale QML/settings, restart the shell:
 # plasmashell --replace & disown
 ```
+// BUILDING SHADERS (.qsb)
 
-## // CONTROLS & CONFIG
+If you modify the .frag files, you must recompile them using Qt Shader Baker:
 
-**Settings Menu:**
-* **Theme Presets:** Select from 13 different aesthetic palettes: Amiga Original, Amber, Catppuccin, Dracula, Emerald, Everforest, Gruvbox, Kii (Wii-inspired UI), Monochrome, Nord, Paper Light, Rose Pine, and Tokyo Night.
-* **Physics Modifiers:** Shift seamlessly between "Jupiter" (Heavy), "Classic 1984", and "Moon Float" You can also manually adjust the animation speed multiplier.
-* **CRT & Analog Effects:** Granular toggles for Bloom, Noise, Jitter, RGB Shifting, Scanline intensity, and Screen Warp (Curvature).
-* **Digital Clock:** Optional, customizable clock overlay integrated into the background layer.
-
-## // BUILDING SHADERS (.qsb)
-
-If you modify the `.frag` files, you must recompile them using Qt Shader Baker:
-
-```bash
 qsb --glsl "150,120" --spirv -o contents/shaders/bg.qsb contents/shaders/bg.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/ball.qsb contents/shaders/ball.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/crt.qsb contents/shaders/crt.frag
 qsb --glsl "150,120" --spirv -o contents/shaders/clock.qsb contents/shaders/clock.frag
-```
-*(A helper script `build_shaders.sh` is included in the project root).*
 
-## // CREDITS
+(A helper script build_shaders.sh is included in the project root).
+
+// CREDITS
 
 * **Developer:** arcanorca
 * **License:** GPL-3.0-or-later
-* **Stack:** KDE Plasma 6 • Qt 6 (QML/JS) • GLSL (.qsb via Qt RHI) • kpackagetool6
+* **Stack:** KDE Plasma 6 | Qt 6 (QML/JS) | GLSL (.qsb via Qt RHI) | kpackagetool6
