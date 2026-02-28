@@ -9,7 +9,10 @@ A visual recreation of the 1984 Amiga Boing Ball tech demo as a KDE Plasma 6 liv
 
 ## // DEMO
 
-https://github.com/user-attachments/assets/b895d35c-c34f-4201-8ab4-19307b759437
+
+https://github.com/user-attachments/assets/698e1c0b-59eb-4fff-a8ec-06e5c17da47e
+
+
 
 <br/>
 
